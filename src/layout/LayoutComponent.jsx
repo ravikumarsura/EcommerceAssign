@@ -1,4 +1,3 @@
-// src/layout/LayoutComponent.js
 import React, { useState } from 'react';
 import { Layout, Menu, Badge } from 'antd';
 import { useLocation } from 'react-router-dom';
