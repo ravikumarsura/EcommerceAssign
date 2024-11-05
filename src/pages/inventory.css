@@ -1,0 +1,10 @@
+.card_container{
+    width: 50%;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+}
+.all_cards{
+    display: flex;
+    gap: 16px;
+}
