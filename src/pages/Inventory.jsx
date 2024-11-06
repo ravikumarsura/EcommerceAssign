@@ -68,7 +68,6 @@ const Inventory = () => {
         </Header>
 
         <Content style={{ margin: '24px', backgroundColor: '#fff', borderRadius: '8px', padding: '24px' }}>
-          {/* Inventory Summary */}
           <div className="inventory-summary">
             <Card className="summary-card">
               <h3>All Products</h3>

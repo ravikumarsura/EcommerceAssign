@@ -27,15 +27,17 @@ import './App.css';
 import InventoryData from './pages/InventoryData';
 import Sidebar from './layout/Sidebar';
 import Navbar from './layout/Navbar';
+import NewInventoryItem from './pages/NewInventory';
 
 const AppLayout = () => (
   <Layout style={{ minHeight: '100vh' }}>
     <Sidebar />
     <Layout>
       <Navbar />
-      <Layout.Content style={{ padding: '24px' }}>
+      <Layout.Content style={{ padding: '14px' }}>
         <Routes>
           <Route path="/inventory" element={<InventoryData />} />
+          <Route path="/new-inventory-item" element={<NewInventoryItem />} />
           {/* <Route path="/orders" element={<Orders />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/gifts" element={<Gifts />} />

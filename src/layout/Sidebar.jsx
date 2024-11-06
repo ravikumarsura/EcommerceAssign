@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Layout, Menu, Badge } from 'antd';
 import {
   AppstoreOutlined,
@@ -15,27 +15,59 @@ const { Sider } = Layout;
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const [activeKey, setActiveKey] = useState('/inventory'); // Default active menu item
 
-  const menuItems = [
-    { key: '/inventory', icon: <AppstoreOutlined />, label: 'Inventory' },
-    { key: '/orders', icon: <ShoppingCartOutlined />, label: 'Orders' },
-    { key: '/customers', icon: <UserOutlined />, label: 'Customers' },
-    { key: '/gifts', icon: <GiftOutlined />, label: 'Gifts' },
-    { key: '/support', icon: <CustomerServiceOutlined />, label: 'Support' },
+  const handleMenuClick = (key) => {
+    setActiveKey(key);
+    navigate(key);
+  };
+
+  const topMenuItems = [
+    { key: '/inventory', icon: <AppstoreOutlined />, count: 0 },
+    { key: '/orders', icon: <ShoppingCartOutlined />, count: 3 },
+    { key: '/customers', icon: <UserOutlined />, count: 0 },
+  ];
+
+  const bottomMenuItems = [
+    { key: '/gifts', icon: <GiftOutlined />, count: 16 },
+    { key: '/support', icon: <CustomerServiceOutlined />, count: 0 },
   ];
 
   return (
     <Sider width={80} className="sidebar">
       <div className="logo" />
       <Menu theme="light" mode="vertical" className="sidebar-menu">
-        {menuItems.map(item => (
-          <Menu.Item key={item.key} icon={<Badge>{item.icon}</Badge>} onClick={() => navigate(item.key)}>
-            {item.label}
+        {topMenuItems.map(item => (
+          <Menu.Item
+            key={item.key}
+            className={`menu-item ${activeKey === item.key ? 'active' : ''}`}
+            onClick={() => handleMenuClick(item.key)}
+          >
+            <Badge count={item.count} offset={[10, 0]}>
+              {item.icon}
+            </Badge>
           </Menu.Item>
         ))}
-        <Menu.Item key="/logout" icon={<LogoutOutlined />} onClick={() => navigate('/logout')}>
-          Logout
-        </Menu.Item>
+
+        <div className="bottom-menu-items">
+          {bottomMenuItems.map(item => (
+            <Menu.Item
+              key={item.key}
+              className={`menu-item ${activeKey === item.key ? 'active' : ''}`}
+              onClick={() => handleMenuClick(item.key)}
+            >
+              <Badge count={item.count} offset={[10, 0]}>
+                {item.icon}
+              </Badge>
+            </Menu.Item>
+          ))}
+          <Menu.Item
+            key="/logout"
+            icon={<LogoutOutlined />}
+            className="logout-item"
+            onClick={() => handleMenuClick('/logout')}
+          />
+        </div>
       </Menu>
     </Sider>
   );
