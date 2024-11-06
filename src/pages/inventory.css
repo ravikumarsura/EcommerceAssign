@@ -1,23 +1,4 @@
-/* Sidebar */
-.inventory-sider {
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 24px;
-  }
-  
-  .inventory-menu {
-    width: 100%;
-  }
-  
-  .logo {
-    height: 64px;
-    margin: 16px;
-    background: #e6f7ff;
-  }
-  
-  /* Header */
+/* 
   .inventory-header {
     display: flex;
     justify-content: space-between;
@@ -39,7 +20,6 @@
     gap: 16px;
   }
   
-  /* Inventory Summary Cards */
   .inventory-summary {
     display: flex;
     gap: 16px;
@@ -65,7 +45,7 @@
     margin: 0;
   }
   
-  /* Search and Action Buttons */
+  
   .inventory-actions {
     display: flex;
     justify-content: space-between;
@@ -83,7 +63,6 @@
     border-radius: 6px;
   }
   
-  /* Table Styling */
   .ant-table {
     border-radius: 8px;
   }
@@ -100,7 +79,6 @@
     text-align: center;
   }
   
-  /* Pagination Styling */
   .ant-pagination-item {
     border-radius: 4px;
   }
@@ -110,4 +88,4 @@
     color: #fff;
     border-color: #1890ff;
   }
-  
+   */ 
