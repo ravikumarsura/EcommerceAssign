@@ -32,6 +32,7 @@ const NewInventoryItem = () => {
   const [inventoryData, setInventoryData] = useState({
     discount: false,
     expiryDate: false,
+    returnpolicy: false
   });
 
   const handleImageUpload = ({ fileList }) => setImageList(fileList);
@@ -47,6 +48,12 @@ const NewInventoryItem = () => {
       setInventoryData((prevState) => ({
         ...prevState,
         expiryDate: event,
+      }));
+    }
+    if (type === "returnpolicy") {
+      setInventoryData((prevState) => ({
+        ...prevState,
+        returnpolicy: event,
       }));
     }
   };
@@ -124,13 +131,13 @@ const NewInventoryItem = () => {
 
                 {inventoryData.discount && (
                   <div className="discount_drop">
-                    <div style={{width:"50%"}}>
+                    <div style={{ width: "50%" }}>
                       <label htmlFor="">Type</label>
-                      <div style={{width:"100%"}}>
-                      <Select placeholder="Type">
-                        <Option value="percentage">Percentage</Option>
-                        <Option value="fixed">Fixed</Option>
-                      </Select>
+                      <div style={{ width: "100%" }}>
+                        <Select placeholder="Type">
+                          <Option value="percentage">Percentage</Option>
+                          <Option value="fixed">Fixed</Option>
+                        </Select>
                       </div>
                     </div>
                     <div>
@@ -142,7 +149,7 @@ const NewInventoryItem = () => {
 
                 {inventoryData.expiryDate && (
                   <div className="discount_drop">
-                    <div style={{width:"50%"}}>
+                    <div style={{ width: "50%" }}>
                       <label htmlFor="">Select Date</label>
                       <DatePicker
                         placeholder="Select Date"
@@ -170,20 +177,23 @@ const NewInventoryItem = () => {
 
                 <div className="return-policy">
                   <label>Return Policy</label>
-                  <Switch />
+                  <Switch onChange={(e) => handleChange(e, "returnpolicy")} />
                 </div>
-
-                <label>Date Added</label>
-                <div className="date-time-picker">
-                  <DatePicker
-                    placeholder="Select Date"
-                    suffixIcon={<CalendarOutlined />}
-                  />
-                  <TimePicker
-                    placeholder="Select Time"
-                    suffixIcon={<ClockCircleOutlined />}
-                  />
-                </div>
+                {inventoryData.returnpolicy &&(
+                  <div>
+                    <label>Date Added</label>
+                    <div className="date-time-picker">
+                      <DatePicker
+                        placeholder="Select Date"
+                        suffixIcon={<CalendarOutlined />}
+                      />
+                      <TimePicker
+                        placeholder="Select Time"
+                        suffixIcon={<ClockCircleOutlined />}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </Col>
