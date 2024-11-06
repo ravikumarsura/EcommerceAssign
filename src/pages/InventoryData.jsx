@@ -18,10 +18,14 @@ import {
   DownloadOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
+import image1 from '../assets/images/cardicon1.png'
 import "./Pages.css";
+import { useNavigate } from "react-router-dom";
 
 const InventoryData = () => {
   const [searchText, setSearchText] = useState("");
+
+  const navigate = useNavigate()
 
   const handleSearch = (e) => setSearchText(e.target.value);
 
@@ -164,13 +168,41 @@ const InventoryData = () => {
       </div>
 
       <div className="inventory-summary-cards">
-        <Card className="summary-card">
-          <MenuOutlined className="card-icon" />
-          <span>Total Products: 350</span>
+        <Card className="">
+          {/* <MenuOutlined className="card-icon" />
+          <span>Total Products: 350</span> */}
+          <div>
+            <img src={image1} alt="" />
+          </div>
+          <div style={{display:"flex",width:"100%"}}>
+            <div style={{width:"50%"}}>
+              <p>All Products</p>
+              <p>350</p>
+            </div>
+            <div>
+              <p>Active</p>
+              <p>316 <span style={{fontSize:"10px",color:"#DBDEEE"}}>86%</span></p>
+            </div>
+          </div>
         </Card>
-        <Card className="summary-card">
-          <DownloadOutlined className="card-icon" />
-          <span>In Stock: 316</span>
+        <Card >
+        <div>
+            <img src={image1} alt="" />
+          </div>
+          <div style={{display:"flex",width:"100%"}}>
+            <div style={{width:"33.3%"}}>
+              <p>Low Stock Alert</p>
+              <p>23</p>
+            </div>
+            <div style={{width:"33.3%"}}>
+            <p>Expired</p>
+            <p>3</p>
+            </div>
+            <div>
+              <p>1 Start Rating</p>
+              <p>2</p>
+            </div>
+          </div>
         </Card>
       </div>
 
