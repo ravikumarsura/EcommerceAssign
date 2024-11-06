@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Layout } from 'antd';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 import InventoryData from './pages/InventoryData';
 import Sidebar from './layout/Sidebar';
@@ -16,6 +15,7 @@ const AppLayout = () => (
       <Navbar />
       <Layout.Content style={{ padding: '14px' }}>
         <Routes>
+          <Route path="/" element={<Navigate to="/inventory" />} />
           <Route path="/inventory" element={<InventoryData />} />
           <Route path="/new-inventory-item" element={<NewInventoryItem />} />
           <Route path="/viewinventory" element={<ViewInventory />} />

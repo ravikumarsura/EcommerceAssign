@@ -11,8 +11,8 @@ const Navbar = () => {
   const breadcrumbNameMap = {
     "/": "Home",
     "/inventory": "Inventory",
-    "/orders": "Orders",
-    "/customers": "Customers",
+    "/new-inventory-item": "Inventory  /  New Inventory",
+    "/viewinventory": "Inventory /  View Inventory",
     "/gifts": "Gifts",
     "/support": "Support",
   };

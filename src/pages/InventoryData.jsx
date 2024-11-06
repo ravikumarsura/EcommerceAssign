@@ -169,34 +169,33 @@ const InventoryData = () => {
 
       <div className="inventory-summary-cards">
         <Card className="">
-          {/* <MenuOutlined className="card-icon" />
-          <span>Total Products: 350</span> */}
+
           <div>
             <img src={image1} alt="" />
           </div>
-          <div style={{display:"flex",width:"100%"}}>
-            <div style={{width:"50%"}}>
+          <div style={{ display: "flex", width: "100%" }}>
+            <div style={{ width: "50%" }}>
               <p>All Products</p>
               <p>350</p>
             </div>
             <div>
               <p>Active</p>
-              <p>316 <span style={{fontSize:"10px",color:"#DBDEEE"}}>86%</span></p>
+              <p>316 <span style={{ fontSize: "10px", color: "#DBDEEE" }}>86%</span></p>
             </div>
           </div>
         </Card>
         <Card >
-        <div>
+          <div>
             <img src={image1} alt="" />
           </div>
-          <div style={{display:"flex",width:"100%"}}>
-            <div style={{width:"33.3%"}}>
+          <div style={{ display: "flex", width: "100%" }}>
+            <div style={{ width: "33.3%" }}>
               <p>Low Stock Alert</p>
               <p>23</p>
             </div>
-            <div style={{width:"33.3%"}}>
-            <p>Expired</p>
-            <p>3</p>
+            <div style={{ width: "33.3%" }}>
+              <p>Expired</p>
+              <p>3</p>
             </div>
             <div>
               <p>1 Start Rating</p>
