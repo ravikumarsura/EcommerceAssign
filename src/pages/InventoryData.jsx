@@ -21,6 +21,7 @@ import {
 import image1 from '../assets/images/cardicon1.png'
 import "./Pages.css";
 import { useNavigate } from "react-router-dom";
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 const InventoryData = () => {
   const [searchText, setSearchText] = useState("");
@@ -87,7 +88,7 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Product Name &emsp;
-          <MenuOutlined />
+          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
         </div>
       ),
       dataIndex: "productName",
@@ -97,7 +98,7 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Category &emsp;
-          <MenuOutlined />
+          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
         </div>
       ),
       dataIndex: "category",
@@ -106,7 +107,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Unit Price&emsp; <MenuOutlined />
+          &emsp;Unit Price&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
         </div>
       ),
       dataIndex: "unitPrice",
@@ -115,7 +116,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;In-Stock&emsp; <MenuOutlined />
+          &emsp;In-Stock&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
         </div>
       ),
       dataIndex: "inStock",
@@ -125,7 +126,7 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Discount &emsp;
-          <MenuOutlined />
+          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
         </div>
       ),
       dataIndex: "discount",
@@ -134,7 +135,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Total Value&emsp; <MenuOutlined />
+          &emsp;Total Value&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
         </div>
       ),
       dataIndex: "totalValue",
@@ -143,7 +144,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Status&emsp; <MenuOutlined />
+          &emsp;Status&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
         </div>
       ),
       dataIndex: "status",

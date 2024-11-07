@@ -57,15 +57,26 @@ const NewInventoryItem = () => {
   };
 
   const handleSaveAndPublish = () => {
+    const image = imageList[0];
+    let imageUrl = null;
+  
+    if (image?.originFileObj) {
+      imageUrl = URL.createObjectURL(image.originFileObj);
+    } else if (image?.url) {
+      imageUrl = image.url;
+    }
+  
     setInventory({
-      image: imageList[0]?.url || URL.createObjectURL(imageList[0]?.originFileObj),
+      image: imageUrl,
       productName,
       productLink,
       date,
       time,
     });
+  
     navigate("/viewinventory");
   };
+  
 
   return (
     <Layout className="inventory-item-layout">
