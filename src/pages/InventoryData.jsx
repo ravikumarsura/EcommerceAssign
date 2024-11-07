@@ -6,6 +6,9 @@ import {
   Button,
   Tag,
   Pagination,
+  Modal,
+  Checkbox,
+  message,
 } from "antd";
 import {
   SearchOutlined,
@@ -13,13 +16,15 @@ import {
   ShareAltOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
-import FilterListIcon from '@mui/icons-material/FilterList';
-import image1 from '../assets/images/cardicon1.png';
+import FilterListIcon from "@mui/icons-material/FilterList";
+import image1 from "../assets/images/cardicon1.png";
 import "./Pages.css";
 import { useNavigate } from "react-router-dom";
 
 const InventoryData = () => {
   const [searchText, setSearchText] = useState("");
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e) => setSearchText(e.target.value);
@@ -34,7 +39,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
-      image: "https://www.apple.com/v/iphone-13/x/images/overview/hero/hero_iphone_13__d8nmebfdy6ki_large_2x.jpg",
+      image:
+        "https://www.apple.com/v/iphone-13/x/images/overview/hero/hero_iphone_13__d8nmebfdy6ki_large_2x.jpg",
       productLink: "https://www.apple.com/iphone-13-pro/",
     },
     {
@@ -46,7 +52,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
-      image: "https://www.apple.com/v/iphone-12/x/images/overview/hero/hero_iphone_12__lqfoelomqtqi_large_2x.jpg",
+      image:
+        "https://www.apple.com/v/iphone-12/x/images/overview/hero/hero_iphone_12__lqfoelomqtqi_large_2x.jpg",
       productLink: "https://www.apple.com/iphone-12-pro/",
     },
     {
@@ -82,7 +89,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Unpublished",
-      image: "https://www.samsung.com/global/galaxy/galaxy-s21-5g/_images/overview/galaxy-s21-ultra-front-01.jpg",
+      image:
+        "https://www.samsung.com/global/galaxy/galaxy-s21-5g/_images/overview/galaxy-s21-ultra-front-01.jpg",
       productLink: "https://www.samsung.com/galaxy-s21/",
     },
   ];
@@ -92,7 +100,9 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Product Name &emsp;
-          <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "productName",
@@ -119,7 +129,9 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Category &emsp;
-          <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "category",
@@ -128,7 +140,10 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Unit Price&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
+          &emsp;Unit Price&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "unitPrice",
@@ -137,7 +152,10 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;In-Stock&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
+          &emsp;In-Stock&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "inStock",
@@ -147,7 +165,9 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Discount &emsp;
-          <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "discount",
@@ -156,7 +176,10 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Total Value&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
+          &emsp;Total Value&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "totalValue",
@@ -165,7 +188,10 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Status&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
+          &emsp;Status&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "status",
@@ -175,6 +201,57 @@ const InventoryData = () => {
       ),
     },
   ];
+
+  const filteredData = dataSource.filter((item) =>
+    item.productName.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  const handleFilterOpen = () => setIsFilterModalVisible(true);
+  const handleFilterApply = () => {
+    message.success("Filters applied successfully.");
+    setIsFilterModalVisible(false);
+  };
+  const handleFilterCancel = () => setIsFilterModalVisible(false);
+
+  // Share functionality
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Inventory Data",
+          text: "Check out our inventory data",
+          url: window.location.href,
+        })
+        .then(() => {
+          message.success("Shared successfully");
+        })
+        .catch((error) => {
+          message.error("Failed to share");
+        });
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      message.info("Link copied to clipboard");
+    }
+  };
+
+  const handleInventoryItems = () => {
+    setSearchText("");
+    setSelectedRows([]);
+    message.info("Inventory items reset.");
+  };
+
+  const handleBulkActions = () => {
+    if (selectedRows.length > 0) {
+      message.success(`Bulk action applied to ${selectedRows.length} items.`);
+      setSelectedRows([]);
+    } else {
+      message.warning("Please select items for bulk actions.");
+    }
+  };
+
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => setSelectedRows(selectedRows),
+  };
 
   return (
     <div className="inventory-container">
@@ -190,7 +267,7 @@ const InventoryData = () => {
       </div>
 
       <div className="inventory-summary-cards">
-        <Card className="" style={{background:"#33acff"}}>
+        <Card className="" style={{ background: "#33acff" }}>
           <div>
             <img src={image1} alt="" />
           </div>
@@ -201,7 +278,10 @@ const InventoryData = () => {
             </div>
             <div>
               <p>Active</p>
-              <p>316 <span style={{ fontSize: "10px", color: "#DBDEEE" }}>86%</span></p>
+              <p>
+                316{" "}
+                <span style={{ fontSize: "10px", color: "#DBDEEE" }}>86%</span>
+              </p>
             </div>
           </div>
         </Card>
@@ -236,16 +316,35 @@ const InventoryData = () => {
             value={searchText}
             onChange={handleSearch}
           />
-          <Button icon={<FilterOutlined />}>Filter</Button>
-          <Button icon={<ShareAltOutlined />}>Share</Button>
-          <Button>Inventory Items</Button>
-          <Button>Bulk Actions</Button>
+          <Button icon={<FilterOutlined />} onClick={handleFilterOpen}>
+            Filter
+          </Button>
+          <Button icon={<ShareAltOutlined />} onClick={handleShare}>
+            Share
+          </Button>
+          <Button onClick={handleInventoryItems}>Inventory Items</Button>
+          <Button onClick={handleBulkActions}>Bulk Actions</Button>
         </div>
       </div>
 
+      <Modal
+        title="Apply Filters"
+        visible={isFilterModalVisible}
+        onOk={handleFilterApply}
+        onCancel={handleFilterCancel}
+      >
+        <Checkbox>Category: Gadgets</Checkbox>
+        <br />
+        <Checkbox>Category: Fashion</Checkbox>
+        <br />
+        <Checkbox>Status: Published</Checkbox>
+        <br />
+        <Checkbox>Status: Unpublished</Checkbox>
+        <br />
+      </Modal>
       <Table
-        rowSelection={{ type: "checkbox" }}
-        dataSource={dataSource}
+        rowSelection={rowSelection}
+        dataSource={filteredData}
         columns={columns}
         pagination={false}
         rowKey="key"
