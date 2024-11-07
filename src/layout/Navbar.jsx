@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Dropdown, Avatar, Breadcrumb } from "antd";
+import { Layout, Dropdown, Avatar, Breadcrumb,Menu } from "antd";
 import { DownOutlined, HomeFilled } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
 import "./layout.css";
@@ -18,47 +18,48 @@ const Navbar = () => {
   };
 
   const menu = (
-    <Dropdown.Menu>
-      <Dropdown.Item key="">Option 1</Dropdown.Item>
-      <Dropdown.Item key="">Option 2</Dropdown.Item>
-    </Dropdown.Menu>
+    <Menu>
+      <Menu.Item key="1">Option 1</Menu.Item>
+      <Menu.Item key="2">Option 2</Menu.Item>
+    </Menu>
   );
 
   const pathnames = location.pathname.split("/").filter((x) => x);
 
   return (
     <Header className="navbar">
-      <div style={{flexDirection:'column'}}>
-      <div className="header-left">
-        <h2>Inventory</h2>
-      </div>
-      <div>
-      <Breadcrumb>
-        <Breadcrumb.Item>
-          <Link to="/">
-            <HomeFilled style={{ color: "blue" }} />
-            &emsp;<span style={{ color: "blue" }}>Home</span>
-          </Link>
-        </Breadcrumb.Item>
-        {pathnames.map((value, index) => {
-          const path = `/${pathnames.slice(0, index + 1).join("/")}`;
-          return (
-            <Breadcrumb.Item key={path}>
-              <Link to={path}>{breadcrumbNameMap[path]}</Link>
+      <div style={{ flexDirection: "column" }}>
+        <div className="header-left">
+          <h2>Inventory</h2>
+        </div>
+        <div>
+          <Breadcrumb>
+            <Breadcrumb.Item>
+              <Link to="/">
+                <HomeFilled style={{ color: "blue" }} />
+                &emsp;<span style={{ color: "blue" }}>Home</span>
+              </Link>
             </Breadcrumb.Item>
-          );
-        })}
-      </Breadcrumb>
+            {pathnames.map((value, index) => {
+              const path = `/${pathnames.slice(0, index + 1).join("/")}`;
+              return (
+                <Breadcrumb.Item key={path}>
+                  <Link to={path}>{breadcrumbNameMap[path]}</Link>
+                </Breadcrumb.Item>
+              );
+            })}
+          </Breadcrumb>
+        </div>
       </div>
-      </div> 
       <div className="navbar-right">
-        <Dropdown overlay={menu} trigger={["click"]}>
-          <span style={{ fontWeight: "bold", cursor: "pointer" }}>
-            Nanny's Shop <DownOutlined />
-          </span>
-        </Dropdown>
-        <Avatar src="https://via.placeholder.com/32" />
-      </div>
+      <Dropdown overlay={menu} trigger={["click"]}>
+        <span style={{ fontWeight: "bold", cursor: "pointer", display: "flex", alignItems: "center" }}>
+          Nanny's Shop <DownOutlined style={{ marginLeft: 5 }} />
+        </span>
+      </Dropdown>
+
+      <Avatar src="https://via.placeholder.com/32" />
+    </div>
     </Header>
   );
 };
