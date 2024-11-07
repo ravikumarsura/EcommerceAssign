@@ -239,7 +239,7 @@ const NewInventoryItem = () => {
                 <label>Discount</label>
                 <div className="discount-expiry1">
                   <p>Add Discount</p>
-                  <Switch onChange={(e) => handleChange(e, "discount")} value={inventoryData?.discount}/>
+                  <Switch onChange={(e) => handleChange(e, "discount")} value={inventoryData?.discount} />
                 </div>
               </div>
               {inventoryData?.discount && (
@@ -303,7 +303,7 @@ const NewInventoryItem = () => {
                 >
                   <ReactQuill
                     style={{ maxWidth: "100%" }}
-                    value={inventoryData?.long_description}
+                    value={longDescription}
                     onChange={handleChangenew}
                     placeholder="Enter long description"
                     theme="snow"
@@ -318,6 +318,7 @@ const NewInventoryItem = () => {
                       ],
                     }}
                   />
+
                   <p>Add a Long Description for your Product.</p>
                 </div>
               </div>
