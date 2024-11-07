@@ -29,8 +29,8 @@ const Sidebar = () => {
   ];
 
   const bottomMenuItems = [
-    { key: '/gifts', icon: <GiftOutlined />, count: 16 },
     { key: '/support', icon: <CustomerServiceOutlined />, count: 0 },
+    { key: '/gifts', icon: <GiftOutlined />, count: 16 },
   ];
 
   return (
@@ -63,7 +63,7 @@ const Sidebar = () => {
           ))}
           <Menu.Item
             key="/logout"
-            icon={<LogoutOutlined />}
+            icon={<LogoutOutlined style={{color:"red"}}/>}
             className="logout-item"
             onClick={() => handleMenuClick('/logout')}
           />

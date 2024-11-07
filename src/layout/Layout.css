@@ -35,8 +35,9 @@
   justify-content: center;
   align-items: center;
   height: 60px;
-  font-size: 18px;
+  font-size: 20px;
   color: #595959;
+ 
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -48,16 +49,18 @@
 }
 
 .menu-item .anticon {
-  font-size: 24px;
+  font-size: 27px;
   color: #595959;
+  margin-left: 3px;
 }
 
 .menu-item.active .anticon {
-  color: #1890ff; 
+  color: #000; 
+  align-items: center;
 }
 
 .menu-item.active {
-  background-color: #e6f7ff;
+  background-color: #33acff;
 }
 
 .menu-item:hover {

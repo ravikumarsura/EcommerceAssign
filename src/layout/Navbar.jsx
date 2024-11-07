@@ -37,7 +37,7 @@ const Navbar = () => {
         <Breadcrumb.Item>
           <Link to="/">
             <HomeFilled style={{ color: "blue" }} />
-            &emsp;Home
+            &emsp;<span style={{ color: "blue" }}>Home</span>
           </Link>
         </Breadcrumb.Item>
         {pathnames.map((value, index) => {

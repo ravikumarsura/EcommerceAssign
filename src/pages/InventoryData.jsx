@@ -5,28 +5,22 @@ import {
   Input,
   Button,
   Tag,
-  Checkbox,
   Pagination,
-  Dropdown,
-  Menu,
 } from "antd";
 import {
   SearchOutlined,
   FilterOutlined,
   ShareAltOutlined,
   PlusOutlined,
-  DownloadOutlined,
-  MenuOutlined,
 } from "@ant-design/icons";
-import image1 from '../assets/images/cardicon1.png'
+import FilterListIcon from '@mui/icons-material/FilterList';
+import image1 from '../assets/images/cardicon1.png';
 import "./Pages.css";
 import { useNavigate } from "react-router-dom";
-import FilterListIcon from '@mui/icons-material/FilterList';
 
 const InventoryData = () => {
   const [searchText, setSearchText] = useState("");
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSearch = (e) => setSearchText(e.target.value);
 
@@ -40,6 +34,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
+      image: "https://www.apple.com/v/iphone-13/x/images/overview/hero/hero_iphone_13__d8nmebfdy6ki_large_2x.jpg",
+      productLink: "https://www.apple.com/iphone-13-pro/",
     },
     {
       key: 2,
@@ -50,6 +46,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
+      image: "https://www.apple.com/v/iphone-12/x/images/overview/hero/hero_iphone_12__lqfoelomqtqi_large_2x.jpg",
+      productLink: "https://www.apple.com/iphone-12-pro/",
     },
     {
       key: 3,
@@ -60,6 +58,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Unpublished",
+      image: "https://www.example.com/polo-tshirt.jpg",
+      productLink: "https://www.example.com/polo-tshirt",
     },
     {
       key: 4,
@@ -70,6 +70,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
+      image: "https://www.example.com/nike-sneakers.jpg",
+      productLink: "https://www.example.com/nike-sneakers",
     },
     {
       key: 5,
@@ -80,6 +82,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Unpublished",
+      image: "https://www.samsung.com/global/galaxy/galaxy-s21-5g/_images/overview/galaxy-s21-ultra-front-01.jpg",
+      productLink: "https://www.samsung.com/galaxy-s21/",
     },
   ];
 
@@ -88,17 +92,34 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Product Name &emsp;
-          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
         </div>
       ),
       dataIndex: "productName",
       key: "productName",
+      render: (text, record) => (
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src={record.image}
+            alt={text}
+            style={{ width: 30, height: 30, marginRight: 8 }}
+          />
+          <a
+            href={record.productLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#1890ff", textDecoration: "none" }}
+          >
+            <span>{text}</span>
+          </a>
+        </div>
+      ),
     },
     {
       title: (
         <div>
           &emsp;Category &emsp;
-          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
         </div>
       ),
       dataIndex: "category",
@@ -107,7 +128,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Unit Price&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;Unit Price&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
         </div>
       ),
       dataIndex: "unitPrice",
@@ -116,7 +137,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;In-Stock&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;In-Stock&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
         </div>
       ),
       dataIndex: "inStock",
@@ -126,7 +147,7 @@ const InventoryData = () => {
       title: (
         <div>
           &emsp;Discount &emsp;
-          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
         </div>
       ),
       dataIndex: "discount",
@@ -135,7 +156,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Total Value&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;Total Value&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
         </div>
       ),
       dataIndex: "totalValue",
@@ -144,7 +165,7 @@ const InventoryData = () => {
     {
       title: (
         <div>
-          &emsp;Status&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;Status&emsp; <FilterListIcon style={{ height: "15px", width: "15px", marginTop: "8px" }} />
         </div>
       ),
       dataIndex: "status",
@@ -169,8 +190,7 @@ const InventoryData = () => {
       </div>
 
       <div className="inventory-summary-cards">
-        <Card className="">
-
+        <Card className="" style={{background:"#33acff"}}>
           <div>
             <img src={image1} alt="" />
           </div>
@@ -185,7 +205,7 @@ const InventoryData = () => {
             </div>
           </div>
         </Card>
-        <Card >
+        <Card>
           <div>
             <img src={image1} alt="" />
           </div>
@@ -199,7 +219,7 @@ const InventoryData = () => {
               <p>3</p>
             </div>
             <div>
-              <p>1 Start Rating</p>
+              <p>1 Star Rating</p>
               <p>2</p>
             </div>
           </div>
