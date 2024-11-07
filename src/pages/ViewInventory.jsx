@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { InventoryContext } from "./InventoryContext";
-import { Card, Button, Statistic, Table, Input,Tag } from "antd";
+import { Card, Button, Statistic, Table, Input, Tag, Row, Col } from "antd";
 import {
   EyeOutlined,
   FilterOutlined,
@@ -10,19 +10,27 @@ import {
   ShoppingCartOutlined,
 } from "@ant-design/icons";
 import "./Pages.css";
-import FilterListIcon from '@mui/icons-material/FilterList';
+import FilterListIcon from "@mui/icons-material/FilterList";
+import NewInventoryItem from "./NewInventory";
+import { useNavigate } from "react-router-dom";
+import image1 from '../assets/images/cardicon1.png'
 
 const ViewInventory = () => {
-  const { inventory } = useContext(InventoryContext);
+  const { inventory,newInventory } = useContext(InventoryContext);
   const [searchText, setSearchText] = useState("");
   const handleSearch = (e) => setSearchText(e.target.value);
+  const navigate = useNavigate();
+
+  console.log(newInventory, "inventorydata==>");
 
   const columns = [
     {
       title: (
         <div>
           &emsp;Product Name &emsp;
-          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "productName",
@@ -32,7 +40,9 @@ const ViewInventory = () => {
       title: (
         <div>
           &emsp;Category &emsp;
-          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "category",
@@ -41,7 +51,10 @@ const ViewInventory = () => {
     {
       title: (
         <div>
-          &emsp;Unit Price&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;Unit Price&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "unitPrice",
@@ -50,7 +63,10 @@ const ViewInventory = () => {
     {
       title: (
         <div>
-          &emsp;In-Stock&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;In-Stock&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "inStock",
@@ -60,7 +76,9 @@ const ViewInventory = () => {
       title: (
         <div>
           &emsp;Discount &emsp;
-          <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "discount",
@@ -69,7 +87,10 @@ const ViewInventory = () => {
     {
       title: (
         <div>
-          &emsp;Total Value&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;Total Value&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "totalValue",
@@ -78,7 +99,10 @@ const ViewInventory = () => {
     {
       title: (
         <div>
-          &emsp;Status&emsp; <FilterListIcon style={{height:"15px",width:"15px",marginTop:"8px"}}/>
+          &emsp;Status&emsp;{" "}
+          <FilterListIcon
+            style={{ height: "15px", width: "15px", marginTop: "8px" }}
+          />
         </div>
       ),
       dataIndex: "status",
@@ -89,22 +113,30 @@ const ViewInventory = () => {
     },
   ];
 
+  const editProduct = () => {
+    navigate("/new-inventory-item", { state: newInventory });
+  };
+
   return (
     <div className="view-inventory-container">
       <div className="inventory-header">
         <div className="product-info">
-          <img src={inventory?.image} alt="Product" className="product-image" />
+          <img src={newInventory?.image} alt="Product" className="product-image" />
           <div>
-            <h1>{inventory?.productName}</h1>
-            <p>Date Added: {inventory?.date}</p>
+            <h1>{newInventory?.productName}</h1>
+            <p>Date Added: 12 Sept 2022</p>
             <p>
               Product URL:{" "}
-              <a href={inventory?.productLink}>{inventory?.productLink}</a>
+              <a href={inventory?.productLink}>https://example.com/polo-t-shirt</a>
             </p>
           </div>
         </div>
         <div className="header-actions">
-          <Button className="edit-button" type="primary">
+          <Button
+            className="edit-button"
+            type="primary"
+            onClick={() => editProduct()}
+          >
             Edit Product
           </Button>
           <Button className="unpublish-button" danger>
@@ -112,8 +144,116 @@ const ViewInventory = () => {
           </Button>
         </div>
       </div>
+      <div className="view-inventory-cards-container">
+        <Card className="image_card_container">
+          <img src={newInventory.image} alt="" className="inventory_view_image" />
+        </Card>
 
-      <div className="inventory-stats">
+        <Card>
+          <div>
+            <div className="card_orders">
+              <p>
+                Last Order <span></span>
+              </p>
+              <p className="published">Published</p>
+            </div>
+            <div className="card_stock">
+              <div>
+                <p>Price</p>
+                <p>{newInventory?.cost_price}</p>
+              </div>
+              <div>
+                <p>In-Stock</p>
+                <p>{newInventory?.quantity_stock}</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        <Card>
+        <div>
+            <div className="card_orders">
+              <p>
+                Last Order <span></span>
+              </p>
+              <p className="published">Published</p>
+            </div>
+            <div className="card_stock">
+              {/* <div>
+                <p>Price</p>
+                <p>{newInventory?.cost_price}</p>
+              </div> */}
+              <div>
+                <p>Total Orders</p>
+                <p>{newInventory?.quantity_stock}</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        <Card>
+        <div>
+            <div className="card_orders">
+              <p>
+                Last Order <span></span>
+              </p>
+              <p className="published">Published</p>
+            </div>
+            <div className="card_stock">
+              <div>
+                <p>Views</p>
+                <p>1200</p>
+              </div>
+              <div>
+                <p>Faviorute</p>
+                <p>23</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </div>
+      <div className="inventory-summary-cards">
+      <Card>
+          <div>
+            <img src={image1} alt="" />
+          </div>
+          <div style={{ display: "flex", width: "100%" }}>
+            <div style={{ width: "33.3%" }}>
+              <p>All Orders</p>
+              <p>3</p>
+            </div>
+            <div style={{ width: "33.3%" }}>
+              <p>Pending</p>
+              <p>3</p>
+            </div>
+            <div>
+              <p>Completed</p>
+              <p>2</p>
+            </div>
+          </div>
+        </Card>
+        <Card>
+          <div>
+            <img src={image1} alt="" />
+          </div>
+          <div style={{ display: "flex", width: "100%" }}>
+            <div style={{ width: "33.3%" }}>
+              <p>Cancelled</p>
+              <p>0</p>
+            </div>
+            <div style={{ width: "33.3%" }}>
+              <p>Returned</p>
+              <p>0</p>
+            </div>
+            <div>
+              <p>Damaged</p>
+              <p>0</p>
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      {/* <div className="inventory-stats">
         <Card className="stat-card" bordered={false}>
           <Statistic title="Price" value={inventory?.price} />
         </Card>
@@ -141,7 +281,7 @@ const ViewInventory = () => {
             prefix={<HeartOutlined />}
           />
         </Card>
-      </div>
+      </div> */}
 
       <div className="inventory-purchases">
         <div className="inventory-actions">

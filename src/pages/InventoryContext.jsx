@@ -5,7 +5,7 @@ export const InventoryProvider = ({ children }) => {
   // const [inventory, setInventory] = useState({});
 
   const [inventory, setInventory] = useState({
-    image: '', 
+    image: 'https://img.freepik.com/free-photo/colorful-design-with-spiral-design_188544-9588.jpg', 
     productName: '',
     productLink: 'https://example.com/polo-t-shirt',
     date: '12 Sept 2022',
@@ -26,9 +26,10 @@ export const InventoryProvider = ({ children }) => {
       },
     ],
   });
+  const [newInventory,setNewInventory]= useState({})
 
   return (
-    <InventoryContext.Provider value={{ inventory, setInventory }}>
+    <InventoryContext.Provider value={{ inventory, setInventory,setNewInventory,newInventory }}>
       {children}
     </InventoryContext.Provider>
   );

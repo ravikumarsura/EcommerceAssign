@@ -292,7 +292,7 @@
 /* View Inventory screen */
 .view-inventory-container {
   padding: 20px;
-  max-width: 1200px;
+  /* max-width: 1200px; */
   margin: auto;
 }
 
@@ -301,6 +301,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .product-info {
@@ -363,4 +365,32 @@
 
 .inventory-header .unpublish-button {
   color: red;
+}
+
+.view-inventory-cards-container{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin: 20px 0;
+}
+.inventory_view_image{
+  height: 100px;
+  width: 100px;
+}
+.image_card_container{
+  width: fit-content;
+}
+.card_orders{
+  display: flex;
+  justify-content: space-between;
+}
+.card_stock{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.published{
+  background-color: green;
+  color: #fff;
+  padding: 5px 3px;
+  border-radius: 10px;
 }
