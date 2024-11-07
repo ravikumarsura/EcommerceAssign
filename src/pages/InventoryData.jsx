@@ -353,15 +353,12 @@ const InventoryData = () => {
         rowSelection={rowSelection}
         dataSource={filteredData}
         columns={columns}
-        pagination={true}
+        pagination={false}
         rowKey="key"
-        // Pagination ={{
-        //   pageSize: 4
-        // }}
       />
 
       <div className="inventory-pagination">
-        <Pagination defaultCurrent={1} pageSize={4} total={filteredData.length} showSizeChanger />
+        <Pagination defaultCurrent={1} pageSize={5} total={50} showSizeChanger />
       </div>
     </div>
   );
