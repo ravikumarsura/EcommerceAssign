@@ -2,6 +2,9 @@ import React from "react";
 import { Layout, Dropdown, Avatar, Breadcrumb,Menu } from "antd";
 import { DownOutlined, HomeFilled } from "@ant-design/icons";
 import { useLocation, Link } from "react-router-dom";
+import profile from '../assets/images/profile1.png';
+import notification from '../assets/images/Notification.svg';
+
 import "./layout.css";
 
 const { Header } = Layout;
@@ -52,13 +55,16 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-right">
+        
       <Dropdown overlay={menu} trigger={["click"]}>
         <span style={{ fontWeight: "bold", cursor: "pointer", display: "flex", alignItems: "center" }}>
           Nanny's Shop <DownOutlined style={{ marginLeft: 5 }} />
         </span>
       </Dropdown>
-
-      <Avatar src="https://www.freepik.com/free-vector/young-prince-royal-attire_386983822.htm#fromView=keyword&page=1&position=1&uuid=9e110158-9c85-4977-aee5-fad1b3943abc" />
+      <img src={notification} alt="" />
+      <Avatar src= {profile}
+      // "https://www.freepik.com/free-vector/young-prince-royal-attire_386983822.htm#fromView=keyword&page=1&position=1&uuid=9e110158-9c85-4977-aee5-fad1b3943abc" 
+      />
     </div>
     </Header>
   );

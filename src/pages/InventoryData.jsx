@@ -18,8 +18,12 @@ import {
 } from "@ant-design/icons";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import image1 from "../assets/images/cardicon1.png";
+import image2 from '../assets/images/2User.svg'
 import "./Pages.css";
-import img1 from '../assets/images/'
+import img1 from '../assets/images/profile1.png';
+import img2 from '../assets/images/Rectangle1.svg';
+import img3 from '../assets/images/Rectangle2.svg';
+import img4 from '../assets/images/Rectangle3.svg';
 import { useNavigate } from "react-router-dom";
 
 const InventoryData = () => {
@@ -40,8 +44,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
-      image:
-        "https://www.apple.com/v/iphone-13/x/images/overview/hero/hero_iphone_13__d8nmebfdy6ki_large_2x.jpg",
+      image:img2,
+        // "https://www.apple.com/v/iphone-13/x/images/overview/hero/hero_iphone_13__d8nmebfdy6ki_large_2x.jpg",
       productLink: "https://www.apple.com/iphone-13-pro/",
     },
     {
@@ -53,9 +57,9 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
-      image:
-        "https://www.apple.com/v/iphone-12/x/images/overview/hero/hero_iphone_12__lqfoelomqtqi_large_2x.jpg",
-      productLink: "https://www.apple.com/iphone-12-pro/",
+      image:img3,
+        // "https://www.apple.com/v/iphone-12/x/images/overview/hero/hero_iphone_12__lqfoelomqtqi_large_2x.jpg",
+      productLink: "https://www.apple.com/iphone-12-pro/"
     },
     {
       key: 3,
@@ -66,7 +70,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Unpublished",
-      image: "https://www.example.com/polo-tshirt.jpg",
+      image: img4,
+      // "https://www.example.com/polo-tshirt.jpg",
       productLink: "https://www.example.com/polo-tshirt",
     },
     {
@@ -78,7 +83,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Published",
-      image: "https://www.example.com/nike-sneakers.jpg",
+      image: img2,
+      // "https://www.example.com/nike-sneakers.jpg",
       productLink: "https://www.example.com/nike-sneakers",
     },
     {
@@ -90,8 +96,8 @@ const InventoryData = () => {
       discount: "₦0.00",
       totalValue: "₦50,000.00",
       status: "Unpublished",
-      image:
-        "https://www.samsung.com/global/galaxy/galaxy-s21-5g/_images/overview/galaxy-s21-ultra-front-01.jpg",
+      image: img3,
+        // "https://www.samsung.com/global/galaxy/galaxy-s21-5g/_images/overview/galaxy-s21-ultra-front-01.jpg",
       productLink: "https://www.samsung.com/galaxy-s21/",
     },
   ];
@@ -272,12 +278,12 @@ const InventoryData = () => {
           <div>
             <img src={image1} alt="" />
           </div>
-          <div style={{ display: "flex", width: "100%" }}>
-            <div style={{ width: "50%" }}>
+          <div style={{ display: "flex", width: "100%",color:"#fff",fontSize:"1rem" }}>
+            <div style={{ width: "50%",padding:"10px" }}>
               <p>All Products</p>
               <p>350</p>
             </div>
-            <div>
+            <div style={{ width: "50%",padding:"10px" }}>
               <p>Active</p>
               <p>
                 316{" "}
@@ -287,12 +293,12 @@ const InventoryData = () => {
           </div>
         </Card>
         <Card>
-          <div>
-            <img src={image1} alt="" style={{background:"lightgrey",borderradius:"10px"}}/>
+          <div >
+            <img src={image2} alt="" style={{background: "#FFCC9129",borderRadius:"10px",padding:"10px"}}/>
           </div>
           <div style={{ display: "flex", width: "100%" }}>
-            <div style={{ width: "33.3%" }}>
-              <p>Low Stock Alert</p>
+            <div style={{ width: "33.3%",padding:"10px" }}>
+              <p style={{color:"red"}}>Low Stock Alert</p>
               <p>23</p>
             </div>
             <div style={{ width: "33.3%" }}>
@@ -347,12 +353,15 @@ const InventoryData = () => {
         rowSelection={rowSelection}
         dataSource={filteredData}
         columns={columns}
-        pagination={false}
+        pagination={true}
         rowKey="key"
+        // Pagination ={{
+        //   pageSize: 4
+        // }}
       />
 
       <div className="inventory-pagination">
-        <Pagination defaultCurrent={1} total={50} showSizeChanger />
+        <Pagination defaultCurrent={1} pageSize={4} total={filteredData.length} showSizeChanger />
       </div>
     </div>
   );
