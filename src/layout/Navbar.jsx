@@ -58,7 +58,7 @@ const Navbar = () => {
         </span>
       </Dropdown>
 
-      <Avatar src="https://via.placeholder.com/32" />
+      <Avatar src="https://www.freepik.com/free-vector/young-prince-royal-attire_386983822.htm#fromView=keyword&page=1&position=1&uuid=9e110158-9c85-4977-aee5-fad1b3943abc" />
     </div>
     </Header>
   );

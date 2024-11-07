@@ -19,6 +19,7 @@ import {
 import FilterListIcon from "@mui/icons-material/FilterList";
 import image1 from "../assets/images/cardicon1.png";
 import "./Pages.css";
+import img1 from '../assets/images/'
 import { useNavigate } from "react-router-dom";
 
 const InventoryData = () => {
@@ -287,7 +288,7 @@ const InventoryData = () => {
         </Card>
         <Card>
           <div>
-            <img src={image1} alt="" />
+            <img src={image1} alt="" style={{background:"lightgrey",borderradius:"10px"}}/>
           </div>
           <div style={{ display: "flex", width: "100%" }}>
             <div style={{ width: "33.3%" }}>
