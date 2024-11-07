@@ -131,7 +131,7 @@ const NewInventoryItem = () => {
                   <Switch onChange={(e) => handleChange(e, "expiryDate")} />
                 </div>
               </div>
-             
+
               {inventoryData.expiryDate && (
                 <div className="discount_drop">
                   <div style={{ width: "50%" }}>
@@ -154,24 +154,35 @@ const NewInventoryItem = () => {
             <div className="description-section">
               <label>Short Description</label>
               <TextArea placeholder="Enter short description" rows={3} />
-              <label>Product Long Description</label>
-              <ReactQuill
-                value={longDescription}
-                onChange={handleChangenew}
-                placeholder="Enter long description"
-                theme="snow"
-                modules={{
-                  toolbar: [
-                    [{ header: "1" }, { header: "2" }, { font: [] }],
-                    [{ list: "ordered" }, { list: "bullet" }],
-                    ["bold", "italic", "underline"],
-                    [{ color: [] }, { background: [] }],
-                    [{ align: [] }],
-                    ["link", "image"],
-                  ],
-                }}
-              />
-              <p>Add a Long Description for your Product.</p>
+              <div>
+                <label>Product Long Description</label>
+                <div
+                  style={{
+                    maxWidth: "360px",
+                    wordWrap: "break-word",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  <ReactQuill
+                    style={{ maxWidth: "100%" }}
+                    value={longDescription}
+                    onChange={handleChangenew}
+                    placeholder="Enter long description"
+                    theme="snow"
+                    modules={{
+                      toolbar: [
+                        [{ header: "1" }, { header: "2" }, { font: [] }],
+                        [{ list: "ordered" }, { list: "bullet" }],
+                        ["bold", "italic", "underline"],
+                        [{ color: [] }, { background: [] }],
+                        [{ align: [] }],
+                        ["link", "image"],
+                      ],
+                    }}
+                  />
+                  <p>Add a Long Description for your Product.</p>
+                </div>
+              </div>
               <div className="return-policy">
                 <label>Return Policy</label>
                 <Switch onChange={(e) => handleChange(e, "returnpolicy")} />
