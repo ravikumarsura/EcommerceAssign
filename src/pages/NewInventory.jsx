@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Layout,
   Input,
@@ -22,6 +22,7 @@ import { useNavigate } from "react-router-dom";
 import "./Pages.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { InventoryContext } from './InventoryContext';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -34,6 +35,11 @@ const NewInventoryItem = () => {
     expiryDate: false,
     returnpolicy: false,
   });
+  const [productName, setProductName] = useState('');
+  const [productLink, setProductLink] = useState('');
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState(null);
+  const { setInventory } = useContext(InventoryContext);
 
   const handleChangenew = (value) => {
     setLongDescription(value);
@@ -48,6 +54,17 @@ const NewInventoryItem = () => {
       ...prevState,
       [type]: event,
     }));
+  };
+
+  const handleSaveAndPublish = () => {
+    setInventory({
+      image: imageList[0]?.url || URL.createObjectURL(imageList[0]?.originFileObj),
+      productName,
+      productLink,
+      date,
+      time,
+    });
+    navigate("/viewinventory");
   };
 
   return (
@@ -67,7 +84,7 @@ const NewInventoryItem = () => {
             type="primary"
             className="save-publish"
             icon={<PlusOutlined />}
-            onClick={() => navigate("/viewinventory")}
+            onClick={handleSaveAndPublish}
           >
             Save & Publish
           </Button>

@@ -1,12 +1,11 @@
-import React, { createContext, useState } from "react";
-
+import React, { createContext, useState } from 'react';
 export const InventoryContext = createContext();
 
 export const InventoryProvider = ({ children }) => {
-  const [inventoryItem, setInventoryItem] = useState(null);
+  const [inventory, setInventory] = useState({});
 
   return (
-    <InventoryContext.Provider value={{ inventoryItem, setInventoryItem }}>
+    <InventoryContext.Provider value={{ inventory, setInventory }}>
       {children}
     </InventoryContext.Provider>
   );
