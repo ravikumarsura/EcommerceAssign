@@ -109,13 +109,6 @@ const NewInventoryItem = () => {
                   <Switch onChange={(e) => handleChange(e, "discount")} />
                 </div>
               </div>
-              <div className="discount-expiry">
-                <label>Expiry Date</label>
-                <div className="discount-expiry1">
-                  <p>Add Expiry Date</p>
-                  <Switch onChange={(e) => handleChange(e, "expiryDate")} />
-                </div>
-              </div>
               {inventoryData.discount && (
                 <div className="discount_drop">
                   <div style={{ width: "50%" }}>
@@ -131,6 +124,14 @@ const NewInventoryItem = () => {
                   </div>
                 </div>
               )}
+              <div className="discount-expiry">
+                <label>Expiry Date</label>
+                <div className="discount-expiry1">
+                  <p>Add Expiry Date</p>
+                  <Switch onChange={(e) => handleChange(e, "expiryDate")} />
+                </div>
+              </div>
+             
               {inventoryData.expiryDate && (
                 <div className="discount_drop">
                   <div style={{ width: "50%" }}>
@@ -170,7 +171,7 @@ const NewInventoryItem = () => {
                   ],
                 }}
               />
-
+              <p>Add a Long Description for your Product.</p>
               <div className="return-policy">
                 <label>Return Policy</label>
                 <Switch onChange={(e) => handleChange(e, "returnpolicy")} />
