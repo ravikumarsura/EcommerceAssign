@@ -20,17 +20,24 @@ import {
 } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import "./Pages.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const { TextArea } = Input;
 const { Option } = Select;
 
 const NewInventoryItem = () => {
   const [imageList, setImageList] = useState([]);
+  const [longDescription, setLongDescription] = useState("");
   const [inventoryData, setInventoryData] = useState({
     discount: false,
     expiryDate: false,
-    returnpolicy: false
+    returnpolicy: false,
   });
+
+  const handleChangenew = (value) => {
+    setLongDescription(value);
+  };
 
   const navigate = useNavigate();
 
@@ -48,7 +55,11 @@ const NewInventoryItem = () => {
       <div className="inventory-item-header">
         <h2>New Inventory Item</h2>
         <div>
-          <Button style={{background:"#000",color:"#fff"}} className="save-publish" icon={<SaveOutlined />}>
+          <Button
+            style={{ background: "#000", color: "#fff" }}
+            className="save-publish"
+            icon={<SaveOutlined />}
+          >
             Save as Draft
           </Button>
           &emsp;
@@ -124,11 +135,17 @@ const NewInventoryItem = () => {
                 <div className="discount_drop">
                   <div style={{ width: "50%" }}>
                     <label>Select Date</label>
-                    <DatePicker placeholder="Select Date" suffixIcon={<CalendarOutlined />} />
+                    <DatePicker
+                      placeholder="Select Date"
+                      suffixIcon={<CalendarOutlined />}
+                    />
                   </div>
                   <div>
                     <label>Select Time</label>
-                    <TimePicker placeholder="Select Time" suffixIcon={<ClockCircleOutlined />} />
+                    <TimePicker
+                      placeholder="Select Time"
+                      suffixIcon={<ClockCircleOutlined />}
+                    />
                   </div>
                 </div>
               )}
@@ -137,15 +154,37 @@ const NewInventoryItem = () => {
               <label>Short Description</label>
               <TextArea placeholder="Enter short description" rows={3} />
               <label>Product Long Description</label>
-              <TextArea placeholder="Enter long description" rows={6} />
+              <ReactQuill
+                value={longDescription}
+                onChange={handleChangenew}
+                placeholder="Enter long description"
+                theme="snow"
+                modules={{
+                  toolbar: [
+                    [{ header: "1" }, { header: "2" }, { font: [] }],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    ["bold", "italic", "underline"],
+                    [{ color: [] }, { background: [] }],
+                    [{ align: [] }],
+                    ["link", "image"],
+                  ],
+                }}
+              />
+
               <div className="return-policy">
                 <label>Return Policy</label>
                 <Switch onChange={(e) => handleChange(e, "returnpolicy")} />
               </div>
               {inventoryData.returnpolicy && (
                 <div className="date-time-picker">
-                  <DatePicker placeholder="Select Date" suffixIcon={<CalendarOutlined />} />
-                  <TimePicker placeholder="Select Time" suffixIcon={<ClockCircleOutlined />} />
+                  <DatePicker
+                    placeholder="Select Date"
+                    suffixIcon={<CalendarOutlined />}
+                  />
+                  <TimePicker
+                    placeholder="Select Time"
+                    suffixIcon={<ClockCircleOutlined />}
+                  />
                 </div>
               )}
             </div>
