@@ -84,11 +84,6 @@ const NewInventoryItem = () => {
     }));
   };
 
-  // useEffect(()=>{
-  //   console.log("Trigger");
-
-  // },[editData])
-
   const handleSaveAndPublish = () => {
     const image = imageList[0];
     let imageUrl = null;
@@ -348,7 +343,6 @@ const NewInventoryItem = () => {
           <div className="additional-images-section">
             <h3>Additional Images</h3>
             <div className="images-list">
-              {/* First Image */}
               {imageList.length > 0 && (
                 <div className="first-image">
                   <Card className="image-card">
@@ -372,7 +366,6 @@ const NewInventoryItem = () => {
                 </div>
               )}
 
-              {/* Additional Images */}
               <div className="additional-images">
                 {imageList.slice(1).map((file, index) => (
                   <Card key={index} className="image-card">
@@ -395,7 +388,6 @@ const NewInventoryItem = () => {
                 ))}
               </div>
 
-              {/* Upload Button */}
               <Upload
                 listType="picture-card"
                 fileList={imageList}

@@ -248,7 +248,7 @@ const ViewInventory = () => {
         <Card className="card-container">
           <div className="card-orders">
             <p>
-              Last Order <span></span>
+              Last Order :{currentDate}
             </p>
             <p className="published">Published</p>
           </div>
@@ -266,9 +266,9 @@ const ViewInventory = () => {
 
         <Card className="card-container">
           <div className="card-orders">
-            <p>
-              Last Order <span></span>
-            </p>
+          <div>
+            <img src={image1} alt="Summary Image" />
+          </div>
             <p className="published">Published</p>
           </div>
           <div className="card-stock">
@@ -281,9 +281,9 @@ const ViewInventory = () => {
 
         <Card className="card-container">
           <div className="card-orders">
-            <p>
-              Last Order <span></span>
-            </p>
+          <div>
+            <img src={image1} alt="Summary Image" />
+          </div>
             <p className="published">Published</p>
           </div>
           <div className="card-stock">
