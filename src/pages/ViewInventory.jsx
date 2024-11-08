@@ -27,6 +27,12 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import { useNavigate } from "react-router-dom";
 import "./Pages.css";
 import image1 from "../assets/images/cardicon1.png";
+import image2 from "../assets/images/fi_eye.svg";
+import image3 from "../assets/images/Vector.svg";
+import image4 from "../assets/images/pichart.svg";
+import image5 from "../assets/images/Bag.svg";
+import image6 from "../assets/images/copy.svg";
+
 
 const ViewInventory = () => {
   const { inventory, newInventory } = useContext(InventoryContext);
@@ -215,11 +221,12 @@ const ViewInventory = () => {
                 : "Phantasm"}
             </h2>
             <p>Date Added: {currentDate}</p>
-            <p>
+            <p style={{display:"flex", alignItems:"center"}}>
               Product URL:{" "}
               <a href={inventory?.productLink}>
                 https://example.com/polo-t-shirt
               </a>
+                &emsp;<img src={image6} alt="" style={{cursor:"pointer"}}/>
             </p>
           </div>
         </div>
@@ -267,7 +274,7 @@ const ViewInventory = () => {
         <Card className="card-container">
           <div className="card-orders">
           <div>
-            <img src={image1} alt="Summary Image" />
+            <img src={image4} alt="Summary Image" />
           </div>
             <p className="published">Published</p>
           </div>
@@ -282,7 +289,7 @@ const ViewInventory = () => {
         <Card className="card-container">
           <div className="card-orders">
           <div>
-            <img src={image1} alt="Summary Image" />
+            <img src={image2} alt="Summary Image" />
           </div>
             <p className="published">Published</p>
           </div>
@@ -301,8 +308,10 @@ const ViewInventory = () => {
 
       <div className="inventory-summary-cards">
         <Card className="inventory-summary-card">
-          <div>
-            <img src={image1} alt="Summary Image" />
+          <div style={{width:"fit-content", padding:"10px", borderRadius:"10px",
+            
+          }}>
+            <img src={image5} alt="Summary Image" style={{height:"17px",width:"18px",marginBottom:"5px"}}/>
           </div>
           <div className="inventory-summary-stats">
             <div>
@@ -321,8 +330,10 @@ const ViewInventory = () => {
         </Card>
 
         <Card className="inventory-summary-card">
-          <div>
-            <img src={image1} alt="Summary Image" />
+        <div style={{width:"fit-content", padding:"10px", borderRadius:"10px",
+            
+          }}>
+          <img src={image5} alt="Summary Image" style={{height:"17px",width:"18px",marginBottom:"5px"}}/>
           </div>
           <div className="inventory-summary-stats">
             <div>
