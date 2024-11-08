@@ -45,7 +45,6 @@ const InventoryData = () => {
       totalValue: "₦50,000.00",
       status: "Published",
       image:img2,
-        // "https://www.apple.com/v/iphone-13/x/images/overview/hero/hero_iphone_13__d8nmebfdy6ki_large_2x.jpg",
       productLink: "https://www.apple.com/iphone-13-pro/",
     },
     {
@@ -58,8 +57,6 @@ const InventoryData = () => {
       totalValue: "₦50,000.00",
       status: "Published",
       image:img3,
-        // "https://www.apple.com/v/iphone-12/x/images/overview/hero/hero_iphone_12__lqfoelomqtqi_large_2x.jpg",
-      productLink: "https://www.apple.com/iphone-12-pro/"
     },
     {
       key: 3,
@@ -71,7 +68,6 @@ const InventoryData = () => {
       totalValue: "₦50,000.00",
       status: "Unpublished",
       image: img4,
-      // "https://www.example.com/polo-tshirt.jpg",
       productLink: "https://www.example.com/polo-tshirt",
     },
     {
@@ -84,7 +80,6 @@ const InventoryData = () => {
       totalValue: "₦50,000.00",
       status: "Published",
       image: img2,
-      // "https://www.example.com/nike-sneakers.jpg",
       productLink: "https://www.example.com/nike-sneakers",
     },
     {
@@ -97,7 +92,6 @@ const InventoryData = () => {
       totalValue: "₦50,000.00",
       status: "Unpublished",
       image: img3,
-        // "https://www.samsung.com/global/galaxy/galaxy-s21-5g/_images/overview/galaxy-s21-ultra-front-01.jpg",
       productLink: "https://www.samsung.com/galaxy-s21/",
     },
   ];

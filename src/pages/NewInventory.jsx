@@ -239,7 +239,10 @@ const NewInventoryItem = () => {
                 <label>Discount</label>
                 <div className="discount-expiry1">
                   <p>Add Discount</p>
-                  <Switch onChange={(e) => handleChange(e, "discount")} value={inventoryData?.discount} />
+                  <Switch
+                    onChange={(e) => handleChange(e, "discount")}
+                    value={inventoryData?.discount}
+                  />
                 </div>
               </div>
               {inventoryData?.discount && (
@@ -345,23 +348,54 @@ const NewInventoryItem = () => {
           <div className="additional-images-section">
             <h3>Additional Images</h3>
             <div className="images-list">
-              {imageList.map((file, index) => (
-                <Card key={index} className="image-card">
-                  <img
-                    src={file.url || URL.createObjectURL(file.originFileObj)}
-                    alt="preview"
-                  />
-                  <div className="image-actions">
-                    <Button icon={<CloudUploadOutlined />} />
-                    <Button
-                      icon={<DeleteOutlined />}
-                      onClick={() =>
-                        setImageList(imageList.filter((_, i) => i !== index))
+              {/* First Image */}
+              {imageList.length > 0 && (
+                <div className="first-image">
+                  <Card className="image-card">
+                    <img
+                      src={
+                        imageList[0].url ||
+                        URL.createObjectURL(imageList[0].originFileObj)
                       }
+                      alt="first-preview"
                     />
-                  </div>
-                </Card>
-              ))}
+                    <div className="image-actions">
+                      <Button icon={<CloudUploadOutlined />} />
+                      <Button
+                        icon={<DeleteOutlined />}
+                        onClick={() =>
+                          setImageList(imageList.filter((_, i) => i !== 0))
+                        }
+                      />
+                    </div>
+                  </Card>
+                </div>
+              )}
+
+              {/* Additional Images */}
+              <div className="additional-images">
+                {imageList.slice(1).map((file, index) => (
+                  <Card key={index} className="image-card">
+                    <img
+                      src={file.url || URL.createObjectURL(file.originFileObj)}
+                      alt="preview"
+                    />
+                    <div className="image-actions">
+                      <Button icon={<CloudUploadOutlined />} />
+                      <Button
+                        icon={<DeleteOutlined />}
+                        onClick={() =>
+                          setImageList(
+                            imageList.filter((_, i) => i !== index + 1)
+                          )
+                        }
+                      />
+                    </div>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Upload Button */}
               <Upload
                 listType="picture-card"
                 fileList={imageList}

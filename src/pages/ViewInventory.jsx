@@ -1,224 +1,100 @@
 import React, { useContext, useState } from "react";
 import { InventoryContext } from "./InventoryContext";
-import { Card, Button, Statistic, Table, Input, Tag, Row, Col, Modal, Checkbox } from "antd";
 import {
+  Card,
+  Button,
+  Statistic,
+  Table,
+  Input,
+  Tag,
+  Row,
+  Col,
+  Modal,
+  Checkbox,
+  message,
+} from "antd";
+import {
+  DownOutlined,
   EyeOutlined,
+  FastForwardOutlined,
   FilterOutlined,
   HeartOutlined,
   SearchOutlined,
   ShareAltOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import "./Pages.css";
 import FilterListIcon from "@mui/icons-material/FilterList";
-import NewInventoryItem from "./NewInventory";
 import { useNavigate } from "react-router-dom";
-import img2 from '../assets/images/Rectangle1.svg';
-import img3 from '../assets/images/Rectangle2.svg';
-import img4 from '../assets/images/Rectangle3.svg';
-import image1 from '../assets/images/cardicon1.png'
+import "./Pages.css";
+import image1 from "../assets/images/cardicon1.png";
 
 const ViewInventory = () => {
-  const { inventory,newInventory } = useContext(InventoryContext);
+  const { inventory, newInventory } = useContext(InventoryContext);
   const [searchText, setSearchText] = useState("");
   const [isFilterModalVisible, setIsFilterModalVisible] = useState(false);
+  const [selectedItems, setSelectedItems] = useState([]); // State for checkbox selections
+
   const handleSearch = (e) => setSearchText(e.target.value);
   const navigate = useNavigate();
 
-  console.log(newInventory, "inventorydata==>");
-
-  // const columns = [
-  //   {
-  //     title: (
-  //       <div>
-  //         &emsp;Product Name &emsp;
-  //         <FilterListIcon
-  //           style={{ height: "15px", width: "15px", marginTop: "8px" }}
-  //         />
-  //       </div>
-  //     ),
-  //     dataIndex: "productName",
-  //     key: "productName",
-  //   },
-  //   {
-  //     title: (
-  //       <div>
-  //         &emsp;Category &emsp;
-  //         <FilterListIcon
-  //           style={{ height: "15px", width: "15px", marginTop: "8px" }}
-  //         />
-  //       </div>
-  //     ),
-  //     dataIndex: "category",
-  //     key: "category",
-  //   },
-  //   {
-  //     title: (
-  //       <div>
-  //         &emsp;Unit Price&emsp;{" "}
-  //         <FilterListIcon
-  //           style={{ height: "15px", width: "15px", marginTop: "8px" }}
-  //         />
-  //       </div>
-  //     ),
-  //     dataIndex: "unitPrice",
-  //     key: "unitPrice",
-  //   },
-  //   {
-  //     title: (
-  //       <div>
-  //         &emsp;In-Stock&emsp;{" "}
-  //         <FilterListIcon
-  //           style={{ height: "15px", width: "15px", marginTop: "8px" }}
-  //         />
-  //       </div>
-  //     ),
-  //     dataIndex: "inStock",
-  //     key: "inStock",
-  //   },
-  //   {
-  //     title: (
-  //       <div>
-  //         &emsp;Discount &emsp;
-  //         <FilterListIcon
-  //           style={{ height: "15px", width: "15px", marginTop: "8px" }}
-  //         />
-  //       </div>
-  //     ),
-  //     dataIndex: "discount",
-  //     key: "discount",
-  //   },
-  //   {
-  //     title: (
-  //       <div>
-  //         &emsp;Total Value&emsp;{" "}
-  //         <FilterListIcon
-  //           style={{ height: "15px", width: "15px", marginTop: "8px" }}
-  //         />
-  //       </div>
-  //     ),
-  //     dataIndex: "totalValue",
-  //     key: "totalValue",
-  //   },
-  //   {
-  //     title: (
-  //       <div>
-  //         &emsp;Status&emsp;{" "}
-  //         <FilterListIcon
-  //           style={{ height: "15px", width: "15px", marginTop: "8px" }}
-  //         />
-  //       </div>
-  //     ),
-  //     dataIndex: "status",
-  //     key: "status",
-  //     render: (status) => (
-  //       <Tag color={status === "Published" ? "green" : "green"}>{status}</Tag>
-  //     ),
-  //   },
-  // ];
+  const currentDate = new Date().toLocaleString();
 
   const dataSource = [
     {
       key: 1,
-      productName: "iPhone 13 Pro",
-      category: "Gadgets",
-      unitPrice: "₦1,225,000.00",
-      inStock: 8,
+      orderdate: currentDate,
+      category: "Home Delivery",
+      unitPrice: "₦25,000.00",
+      inStock: 2,
       discount: "₦0.00",
       totalValue: "₦50,000.00",
-      status: "Published",
-      // image:img2,
-        // "https://www.apple.com/v/iphone-13/x/images/overview/hero/hero_iphone_13__d8nmebfdy6ki_large_2x.jpg",
+      status: "Completed",
       productLink: "https://www.apple.com/iphone-13-pro/",
+      isChecked: false,
     },
-    // {
-    //   key: 2,
-    //   productName: "iPhone 12 Pro",
-    //   category: "Gadgets",
-    //   unitPrice: "₦725,000.00",
-    //   inStock: 12,
-    //   discount: "₦0.00",
-    //   totalValue: "₦50,000.00",
-    //   status: "Published",
-    //   image:img3,
-    //     // "https://www.apple.com/v/iphone-12/x/images/overview/hero/hero_iphone_12__lqfoelomqtqi_large_2x.jpg",
-    //   productLink: "https://www.apple.com/iphone-12-pro/"
-    // },
-    // {
-    //   key: 3,
-    //   productName: "Polo T-Shirt",
-    //   category: "Fashion",
-    //   unitPrice: "₦125,000.00",
-    //   inStock: 120,
-    //   discount: "₦0.00",
-    //   totalValue: "₦50,000.00",
-    //   status: "Unpublished",
-    //   image: img4,
-    //   // "https://www.example.com/polo-tshirt.jpg",
-    //   productLink: "https://www.example.com/polo-tshirt",
-    // },
-    // {
-    //   key: 4,
-    //   productName: "Nike Sneakers",
-    //   category: "Footwear",
-    //   unitPrice: "₦85,000.00",
-    //   inStock: 30,
-    //   discount: "₦0.00",
-    //   totalValue: "₦50,000.00",
-    //   status: "Published",
-    //   image: img2,
-    //   // "https://www.example.com/nike-sneakers.jpg",
-    //   productLink: "https://www.example.com/nike-sneakers",
-    // },
-    // {
-    //   key: 5,
-    //   productName: "Samsung Galaxy S21",
-    //   category: "Gadgets",
-    //   unitPrice: "₦1,000,000.00",
-    //   inStock: 15,
-    //   discount: "₦0.00",
-    //   totalValue: "₦50,000.00",
-    //   status: "Unpublished",
-    //   image: img3,
-    //     // "https://www.samsung.com/global/galaxy/galaxy-s21-5g/_images/overview/galaxy-s21-ultra-front-01.jpg",
-    //   productLink: "https://www.samsung.com/galaxy-s21/",
-    // },
+    {
+      key: 2,
+      orderdate: currentDate,
+      category: "Office Delivery",
+      unitPrice: "₦15,000.00",
+      inStock: 2,
+      discount: "₦0.00",
+      totalValue: "₦30,000.00",
+      status: "Pending",
+      productLink: "https://www.apple.com/iphone-13-pro/",
+      isChecked: false,
+    },
   ];
 
   const columns = [
     {
+      title: <Checkbox />,
+      dataIndex: "isChecked",
+      key: "isChecked",
+      render: (text, record) => (
+        <Checkbox
+          checked={record.isChecked}
+          onChange={() => handleCheckboxChange(record.key)}
+        />
+      ),
+    },
+    {
       title: (
         <div>
-          &emsp;Product Name &emsp;
+          &emsp;Order Date &emsp;
           <FilterListIcon
             style={{ height: "15px", width: "15px", marginTop: "8px" }}
           />
         </div>
       ),
-      dataIndex: "productName",
-      key: "productName",
-      render: (text, record) => (
-        <div style={{ display: "flex", alignItems: "center" }}>
-          {/* <img
-            src={record.image}
-            alt={text}
-            style={{ width: 30, height: 30, marginRight: 8 }}
-          /> */}
-          <a
-            href={record.productLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#1890ff", textDecoration: "none" }}
-          >
-            <span>{text}</span>
-          </a>
-        </div>
-      ),
+      dataIndex: "orderdate",
+      key: "orderdate",
+      render: (text) => <span>{text}</span>,
     },
     {
       title: (
         <div>
-          &emsp;Category &emsp;
+          &emsp;Order Type &emsp;
           <FilterListIcon
             style={{ height: "15px", width: "15px", marginTop: "8px" }}
           />
@@ -242,7 +118,7 @@ const ViewInventory = () => {
     {
       title: (
         <div>
-          &emsp;In-Stock&emsp;{" "}
+          &emsp;Qty&emsp;{" "}
           <FilterListIcon
             style={{ height: "15px", width: "15px", marginTop: "8px" }}
           />
@@ -266,7 +142,7 @@ const ViewInventory = () => {
     {
       title: (
         <div>
-          &emsp;Total Value&emsp;{" "}
+          &emsp;Order Total&emsp;{" "}
           <FilterListIcon
             style={{ height: "15px", width: "15px", marginTop: "8px" }}
           />
@@ -287,10 +163,17 @@ const ViewInventory = () => {
       dataIndex: "status",
       key: "status",
       render: (status) => (
-        <Tag color={status === "Published" ? "blue" : "orange"}>{status}</Tag>
+        <Tag color={status === "Completed" ? "green" : "orange"}>{status}</Tag>
       ),
     },
   ];
+
+  const handleCheckboxChange = (key) => {
+    const updatedDataSource = dataSource.map((item) =>
+      item.key === key ? { ...item, isChecked: !item.isChecked } : item
+    );
+    setSelectedItems(updatedDataSource.filter((item) => item.isChecked));
+  };
   const editProduct = () => {
     navigate("/new-inventory-item", { state: newInventory });
   };
@@ -323,110 +206,110 @@ const ViewInventory = () => {
 
   return (
     <div className="view-inventory-container">
-      <div className="inventory-header">
+      <div className="view-inventory-header">
         <div className="product-info">
-          <img src={newInventory?.image} alt="Product" className="product-image" />
-          <div>
-            <h1>{newInventory?.productName}</h1>
-            <p>Date Added: 12 Sept 2022</p>
+          <div className="product-details">
+            <h2>
+              {newInventory?.productName
+                ? newInventory?.productName
+                : "Phantasm"}
+            </h2>
+            <p>Date Added: {currentDate}</p>
             <p>
               Product URL:{" "}
-              <a href={inventory?.productLink}>https://example.com/polo-t-shirt</a>
+              <a href={inventory?.productLink}>
+                https://example.com/polo-t-shirt
+              </a>
             </p>
           </div>
         </div>
+
         <div className="header-actions">
           <Button
             className="edit-button"
             type="primary"
             onClick={() => editProduct()}
           >
-            Edit Product
+            Edit Product <DownOutlined />
           </Button>
-          <Button className="unpublish-button" danger>
-            Unpublish Product
-          </Button>
+          <Button className="unpublish-button">Unpublish Product</Button>
         </div>
       </div>
+
       <div className="view-inventory-cards-container">
-        <Card className="image_card_container">
-          <img src={newInventory.image} alt="" className="inventory_view_image" />
+        <Card className="image-card-container">
+          <img
+            src={newInventory.image}
+            alt="Inventory"
+            className="inventory-view-image"
+          />
         </Card>
 
-        <Card>
-          <div>
-            <div className="card_orders">
-              <p>
-                Last Order <span></span>
-              </p>
-              <p className="published">Published</p>
+        <Card className="card-container">
+          <div className="card-orders">
+            <p>
+              Last Order <span></span>
+            </p>
+            <p className="published">Published</p>
+          </div>
+          <div className="card-stock">
+            <div>
+              <p>Price</p>
+              <p>₦{newInventory?.cost_price}</p>
             </div>
-            <div className="card_stock">
-              <div>
-                <p>Price</p>
-                <p>{newInventory?.cost_price}</p>
-              </div>
-              <div>
-                <p>In-Stock</p>
-                <p>{newInventory?.quantity_stock}</p>
-              </div>
+            <div>
+              <p>In-Stock</p>
+              <p>{newInventory?.quantity_stock}</p>
             </div>
           </div>
         </Card>
 
-        <Card>
-        <div>
-            <div className="card_orders">
-              <p>
-                Last Order <span></span>
-              </p>
-              <p className="published">Published</p>
-            </div>
-            <div className="card_stock">
-              {/* <div>
-                <p>Price</p>
-                <p>{newInventory?.cost_price}</p>
-              </div> */}
-              <div>
-                <p>Total Orders</p>
-                <p>{newInventory?.quantity_stock}</p>
-              </div>
+        <Card className="card-container">
+          <div className="card-orders">
+            <p>
+              Last Order <span></span>
+            </p>
+            <p className="published">Published</p>
+          </div>
+          <div className="card-stock">
+            <div>
+              <p>Total Orders</p>
+              <p>₦{newInventory?.quantity_stock}</p>
             </div>
           </div>
         </Card>
 
-        <Card>
-        <div>
-            <div className="card_orders">
-              <p>
-                Last Order <span></span>
-              </p>
-              <p className="published">Published</p>
+        <Card className="card-container">
+          <div className="card-orders">
+            <p>
+              Last Order <span></span>
+            </p>
+            <p className="published">Published</p>
+          </div>
+          <div className="card-stock">
+            <div>
+              <p>Views</p>
+              <p>1200</p>
             </div>
-            <div className="card_stock">
-              <div>
-                <p>Views</p>
-                <p>1200</p>
-              </div>
-              <div>
-                <p>Faviorute</p>
-                <p>23</p>
-              </div>
+            <div>
+              <p>Favorite</p>
+              <p>23</p>
             </div>
           </div>
         </Card>
       </div>
+
       <div className="inventory-summary-cards">
-      <Card>
+        <Card className="inventory-summary-card">
           <div>
-            <img src={image1} alt="" />
+            <img src={image1} alt="Summary Image" />
           </div>
-          <div style={{ display: "flex", width: "100%" }}>
-            <div style={{ width: "33.3%" }}>
+          <div className="inventory-summary-stats">
+            <div>
               <p>All Orders</p>
               <p>3</p>
             </div>
-            <div style={{ width: "33.3%" }}>
+            <div>
               <p>Pending</p>
               <p>3</p>
             </div>
@@ -436,16 +319,17 @@ const ViewInventory = () => {
             </div>
           </div>
         </Card>
-        <Card>
+
+        <Card className="inventory-summary-card">
           <div>
-            <img src={image1} alt="" />
+            <img src={image1} alt="Summary Image" />
           </div>
-          <div style={{ display: "flex", width: "100%" }}>
-            <div style={{ width: "33.3%" }}>
+          <div className="inventory-summary-stats">
+            <div>
               <p>Cancelled</p>
               <p>0</p>
             </div>
-            <div style={{ width: "33.3%" }}>
+            <div>
               <p>Returned</p>
               <p>0</p>
             </div>
@@ -456,36 +340,6 @@ const ViewInventory = () => {
           </div>
         </Card>
       </div>
-
-      {/* <div className="inventory-stats">
-        <Card className="stat-card" bordered={false}>
-          <Statistic title="Price" value={inventory?.price} />
-        </Card>
-        <Card className="stat-card" bordered={false}>
-          <Statistic title="In-Stock" value={inventory?.stock} />
-        </Card>
-        <Card className="stat-card" bordered={false}>
-          <Statistic
-            title="Total Orders"
-            value={inventory?.totalOrders}
-            prefix={<ShoppingCartOutlined />}
-          />
-        </Card>
-        <Card className="stat-card" bordered={false}>
-          <Statistic
-            title="Views"
-            value={inventory?.views}
-            prefix={<EyeOutlined />}
-          />
-        </Card>
-        <Card className="stat-card" bordered={false}>
-          <Statistic
-            title="Favourite"
-            value={inventory?.favourite}
-            prefix={<HeartOutlined />}
-          />
-        </Card>
-      </div> */}
 
       <div className="inventory-purchases">
         <div className="inventory-actions">
@@ -498,32 +352,37 @@ const ViewInventory = () => {
               value={searchText}
               onChange={handleSearch}
             />
-            <Button icon={<FilterOutlined />} onClick={handleFilterOpen}>Filter</Button>
-            <Button icon={<ShareAltOutlined />} onClick={handleShare}>Share</Button>
+            <Button icon={<FilterOutlined />} onClick={handleFilterOpen}>
+              Filter
+            </Button>
+            <Button icon={<ShareAltOutlined />} onClick={handleShare}>
+              Share
+            </Button>
             <Button>Inventory Items</Button>
             <Button>Bulk Actions</Button>
           </div>
         </div>
+
         <Modal
-        title="Apply Filters"
-        visible={isFilterModalVisible}
-        onOk={handleFilterApply}
-        onCancel={handleFilterCancel}
-      >
-        <Checkbox>Category: Gadgets</Checkbox>
-        <br />
-        <Checkbox>Category: Fashion</Checkbox>
-        <br />
-        <Checkbox>Status: Published</Checkbox>
-        <br />
-        <Checkbox>Status: Unpublished</Checkbox>
-        <br />
-      </Modal>
+          title="Apply Filters"
+          visible={isFilterModalVisible}
+          onOk={handleFilterApply}
+          onCancel={handleFilterCancel}
+        >
+          <Checkbox>Category: Gadgets</Checkbox>
+          <br />
+          <Checkbox>Category: Fashion</Checkbox>
+          <br />
+          <Checkbox>Status: Published</Checkbox>
+          <br />
+          <Checkbox>Status: Unpublished</Checkbox>
+          <br />
+        </Modal>
         <Table
           columns={columns}
           dataSource={dataSource}
           pagination={false}
-          rowKey="date"
+          rowKey="key"
         />
       </div>
     </div>
